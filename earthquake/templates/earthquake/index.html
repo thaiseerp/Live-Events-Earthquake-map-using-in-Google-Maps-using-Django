@@ -1,0 +1,19 @@
+{% extends 'earthquake/base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h1>Live Hazard Map</h1>
+            <div class="container">
+                <p class="lead">This website shows live map of events like Earthquake, Landslide, Volcano and Forest Fire.
+                The data is extracted from www.usgs.gov using python scripts. The source code is made open source
+                 in my <a href="" target="_blank">Github page</a></p>
+            </div>
+            <div class="container">
+                <br/><br />
+                <a href="{% url 'earthquake:index' %}"><button type="button" class="btn btn-success">Earthquake</button></a>
+                <a href="{% url 'landslide' %}"><button type="button" class="btn btn-success">Landslide</button></a>
+                <a href="{% url 'forest_fire' %}"><button type="button" class="btn btn-success">Forest Fire</button></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

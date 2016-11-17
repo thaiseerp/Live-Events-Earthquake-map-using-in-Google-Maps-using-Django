@@ -1,0 +1,30 @@
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      nav {
+          margin-bottom: 0 !important;
+          border-radius: 0 !important;:
+      }
+      button {
+          margin-right: 30px !important;
+          min-width: 50px !important;
+      }
+      #map {
+        height: 70%;
+        width: 100%;
+      }
+      .heading {
+          font-size:40px;
+          color:#008c38;
+      }
+      .student-details {
+          color: #fff;
+          padding: 20px;
+      }
+      #slider {
+          padding: 10px;
+          background-color: #171819;
+          color:#ffffff;
+      }

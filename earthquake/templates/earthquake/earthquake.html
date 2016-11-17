@@ -1,0 +1,75 @@
+{% extends 'earthquake/base.html' %}
+{% block title %} Live Earthquake Map {% endblock %}
+{% block content %}
+    <div id="map"></div>
+    <script>
+      var map;
+      var image = "{% load staticfiles %}{% static 'images/pointer.png' %}";
+      var content = [], title = [], time = [], link = [];
+      var i = 0;
+      //{% for a,b in latlong.items %}
+       //   {{ b }}
+      //{% endfor %}
+
+      //{% for a,b in title.items %}
+          title.push("{{ b }}");
+      //{% endfor %}
+
+      //{% for a,b in time.items %}
+          time.push("{{ b }}");
+      //{% endfor %}
+
+      //{% for a,b in link.items %}
+          link.push("{{ b }}");
+      //{% endfor %}
+
+      //{% for a in title %}
+          content.push('<h2 style="color:#a90000">' + title[i] + '</h2><h4 style="color:#00a8bb">' + time[i] +
+          '</h4><br /><h4 style="color:#00646f">For more details about this earthquake, click <a target="_blank" href="'
+          + link[i] +'">here </a></h4>');
+          i += 1;
+      //{% endfor %}
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 47.21, lng: -171.39},
+          zoom: 2
+        });
+        var marker,infoWindow;
+        var i = 0;
+        //{% for a,b in latlong.items %}
+                var regex = /[+-]?\d+(\.\d+)?/g;
+                var regexed = /[a-zA-Z]+/g
+                var latlong = "{{ b }}";
+                var floats = latlong.match(regex);
+                var n_e = latlong.match(regexed);
+                if(floats){
+                    var lat = floats[0];
+                    var long = floats[1];
+                }
+                if(n_e){
+                    var north = n_e[0];
+                    var east = n_e[1];
+                }
+                if(north == 'S'){
+                    lat = -1*lat;
+                }
+                if(east == 'W'){
+                    long = -1*long;
+                }
+
+                infoWindow = new google.maps.InfoWindow({ content: content[i] });
+                marker = new google.maps.Marker({
+                  position: {lat: Number(lat), lng: Number(long)},
+                  map: map,
+                  title: 'Earthquake',
+                  info: content[i]
+                });
+                google.maps.event.addListener( marker, 'mouseover', function() {
+                    infoWindow.setContent( this.info );
+                    infoWindow.open( map, this );
+                });
+                i += 1;
+        //{% endfor %}
+      }
+    </script>
+{% endblock %}
