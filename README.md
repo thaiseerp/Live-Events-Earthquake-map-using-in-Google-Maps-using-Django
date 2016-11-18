@@ -6,7 +6,9 @@ Currently this supports only earthquake, you can extent the same project to add 
 
 Code is completely based on Django app.
 
-HOW TO ADD SAME IN GOOGLE EARTH
+PS: DON'T FORGET TO ADD Google Javascript API Key in the reference link on base.html page
+
+# HOW TO ADD SAME IN GOOGLE EARTH
 
 The earthquake.kml file in static folder is for adding network link in Google Earth. This file is updated in every url requests.
 
